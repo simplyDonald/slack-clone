@@ -6,8 +6,8 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 function App() {
   return (
     <div className="app">
-      let's build slack
       <BrowserRouter>
+      let's build slack
 
         <Routes>
           <Route path="/" element={<div>Hi</div>} />

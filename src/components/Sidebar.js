@@ -19,7 +19,7 @@ function Sidebar() {
     <SidebarContainer>
       <SidebarHeader>
         <SidebarInfo>
-          <h2>Slack Clone</h2>
+          <h2>Coders' Box</h2>
           <h3>
             <FiberManualRecordIcon />
             User Name
@@ -54,6 +54,12 @@ const SidebarContainer = styled.div`
   border-top: 1px solid #49274b;
   max-width: 260px;
   margin-top: 60px;
+
+  > hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #49274b;
+  }
 `
 
 const SidebarHeader = styled.div`

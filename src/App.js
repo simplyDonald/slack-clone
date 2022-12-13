@@ -4,6 +4,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import Header from './components/Header';
 import styled from "styled-components";
 import Sidebar from './components/Sidebar';
+import Chat from './components/Chat';
 
 
 function App() {
@@ -14,7 +15,7 @@ function App() {
       <AppBody>
         <Sidebar />
         <Routes>
-          <Route path="/" element={<div></div>} />
+          <Route path="/" element={<Chat />} />
           <Route path="/about" element={<div>About</div>} />
           <Route path="*" element={<div>Hi</div>} />
         </Routes>

@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { db } from '../firebase';
 import firebase from 'firebase';
 
-function ChatInput({ChannelName, channelId}) {
+function ChatInput({channelName, channelId}) {
 
   const inputRef = useRef(null);
 
@@ -28,7 +28,7 @@ function ChatInput({ChannelName, channelId}) {
   return (
     <ChatInputContainer>
       <form>
-        <input ref={inputRef} placeholder={`Message ${ChannelName}`} />
+        <input ref={inputRef} placeholder={`Message #${channelName}`} />
         <Button hidden type="submit" onClick={sendMessage}>
           SEND
         </Button>

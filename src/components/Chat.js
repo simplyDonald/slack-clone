@@ -17,12 +17,13 @@ function Chat() {
   );
 
   const [roomMessages] =useCollection(
-    roomId && 
-    db.collection("rooms").
-    doc(roomId)
-    .collection("messages")
-    .orderBy("timestamp", "asc")
+    roomId && db.collection("rooms").doc(roomId).collection("messages")
   );
+
+  console.log(`++++++<<`,roomDetails);
+  console.log(`----->>`,roomMessages);
+// .doc(roomId).collection("messages").orderBy("timestamp", "asc")
+
 
   return (
     <ChatContainer>
@@ -43,17 +44,19 @@ function Chat() {
 
         <ChatMessages>
           {/* List of messages */}
-          {roomMessages?.docs.map(doc => (
-            <Message 
-              key={doc.id}
-              message={doc.data()}
-              timestamp={doc.data().timestamp}
-              user={doc.data().user}
-              userImage={doc.data().userImage}
-            />
-          ))}
+          {roomMessages?.docs.map(doc => {
+            const {message, timestamp, user, userImage} = doc.data();
+            return (
+              <Message 
+                key={doc.id}
+                message={message}
+                timestamp={timestamp}
+                user={user}
+                userImage={userImage}
+              />
+            )
+          })}
         </ChatMessages>
-
         <ChatInput channelName={roomDetails?.data().name} channelId = {roomId}/>
           {/* Chat input */}
         
@@ -64,7 +67,11 @@ function Chat() {
 
 export default Chat
 
-const ChatMessages = styled.div``
+const ChatMessages = styled.div`
+
+
+`
+
 
 const ChatContainer = styled.div`
   flex: 0.7;

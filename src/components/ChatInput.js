@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { db } from '../firebase';
 import firebase from 'firebase';
 
-function ChatInput({channelName, channelId}) {
+function ChatInput({channelName, channelId, chatRef}) {
 
   const inputRef = useRef(null);
 
@@ -22,7 +22,9 @@ function ChatInput({channelName, channelId}) {
     })
 
     inputRef.current.value = "";
-
+    chatRef?.current?.scrollIntoView({
+      behavior: "smooth",
+    })
 
   }
   return (

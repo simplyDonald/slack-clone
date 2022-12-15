@@ -17,8 +17,8 @@ function ChatInput({channelName, channelId}) {
     db.collection('rooms').doc(channelId).collection('messages').add({
       message: inputRef.current.value,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      user: "Gibbons Depi",
-      userImage: "https://upload.wikimedia.org/wikipedia/en/a/aa/Bart_Simpson_200px.png"
+      user: "Lily Torres",
+      userImage: "https://images.unsplash.com/photo-1609708993734-29d07306bdc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgyfHxwZXJzb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
     })
 
     inputRef.current.value = "";

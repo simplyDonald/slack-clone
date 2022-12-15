@@ -18,11 +18,10 @@ function Chat() {
 
   const [roomMessages] =useCollection(
     roomId && db.collection("rooms").doc(roomId).collection("messages")
+    .orderBy("timestamp", "asc")
   );
 
-  console.log(`++++++<<`,roomDetails);
-  console.log(`----->>`,roomMessages);
-// .doc(roomId).collection("messages").orderBy("timestamp", "asc")
+
 
 
   return (

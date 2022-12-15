@@ -5,7 +5,13 @@ function Message({message, timestamp, user, userImage}) {
   return (
     <MessageContainer>
       <img src={userImage} alt="" />
-      <p>hi there , my name is pranip</p>
+      <MessageInfo>
+        <h4>
+          {user} <span>{new Date(timestamp?.toDate()).toUTCString()}</span>
+        </h4>
+        <p>{message}</p>
+
+      </MessageInfo>
     </MessageContainer>
   )
 }
@@ -13,5 +19,25 @@ function Message({message, timestamp, user, userImage}) {
 export default Message;
 
 const MessageContainer = styled.div`
-  color: black;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+
+  > img {
+    height: 50px;
+    /* width: 50px; */
+    object-fit: contain;
+    border-radius: 8px;
+  }
 `
+
+const MessageInfo = styled.div`
+  padding-left: 10px;
+
+  > h4 > span {
+    color: gray; 
+    font-weight: 300;
+    margin-left: 4px;
+    font-size: 10px;
+  }
+  `

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import styled from "styled-components"
 import StarOutlineIcon from '@mui/icons-material/StarOutline';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -12,16 +12,22 @@ import Message from './Message';
 function Chat() {
 
   const roomId = useSelector(selectRoomId)
+  const chatRef = useRef(null);
   const [roomDetails] = useDocument(
     roomId && db.collection("rooms").doc(roomId)
   );
 
-  const [roomMessages] =useCollection(
+  const [roomMessages, loading] =useCollection(
     roomId && db.collection("rooms").doc(roomId).collection("messages")
     .orderBy("timestamp", "asc")
   );
 
 
+  useEffect(() => {
+    chatRef?.current?.scrollIntoView({
+      behavior: "smooth",
+    })
+  },[roomId, loading])
 
 
   return (
@@ -55,8 +61,12 @@ function Chat() {
               />
             )
           })}
+          <ChatBottom ref={chatRef} />
         </ChatMessages>
-        <ChatInput channelName={roomDetails?.data().name} channelId = {roomId}/>
+        <ChatInput channelName={roomDetails?.data().name}
+          channelId = {roomId}
+          chatRef={chatRef}
+          />
           {/* Chat input */}
         
       </>
@@ -65,6 +75,10 @@ function Chat() {
 }
 
 export default Chat
+
+const ChatBottom = styled.div`
+  padding-bottom: 200px;
+`
 
 const ChatMessages = styled.div`
 

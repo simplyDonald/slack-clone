@@ -32,7 +32,8 @@ function Chat() {
 
   return (
     <ChatContainer>
-      <>
+      {roomDetails && roomMessages && (
+        <>
         <Header>
           <HeaderLeft>
             <h4><strong>#{roomDetails?.data().name} </strong></h4>
@@ -70,6 +71,8 @@ function Chat() {
           {/* Chat input */}
         
       </>
+      )}
+      
     </ChatContainer>
   )
 }

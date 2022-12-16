@@ -1,12 +1,15 @@
 import React, { useRef } from 'react'
 import styled from "styled-components"
 import Button from '@mui/material/Button';
-import { db } from '../firebase';
+import { auth, db } from '../firebase';
 import firebase from 'firebase';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 function ChatInput({channelName, channelId, chatRef}) {
 
   const inputRef = useRef(null);
+
+  const [user] = useAuthState(auth);
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -17,8 +20,8 @@ function ChatInput({channelName, channelId, chatRef}) {
     db.collection('rooms').doc(channelId).collection('messages').add({
       message: inputRef.current.value,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      user: "Lily Torres",
-      userImage: "https://images.unsplash.com/photo-1609708993734-29d07306bdc7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTgyfHxwZXJzb258ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+      user: user?.displayName,
+      userImage: user?.photoURL
     })
 
     inputRef.current.value = "";

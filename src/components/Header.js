@@ -9,6 +9,7 @@ import { auth } from '../firebase';
 
 function Header() {
   const [user] = useAuthState(auth);
+  console.log(`pp here-->`,user.photoURL);
   return (
     <HeaderContainer>
       {/* Header left */}
@@ -16,7 +17,10 @@ function Header() {
         <HeaderAvatar 
           src={user?.photoURL}
           onClick={() => auth.signOut()}
-        />
+        >
+          {user?.displayName[0]}
+        </HeaderAvatar>
+
         <AccessTimeIcon />
       </HeaderLeft>
       {/* Header Search */}

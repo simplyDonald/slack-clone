@@ -22,7 +22,7 @@ import {auth} from "../firebase"
 
 function Sidebar() {
   // get all the channels from db
-  const [channels, loading, error] = useCollection(db.collection("rooms"))
+  const [channels] = useCollection(db.collection("rooms"))
 
   // get the user
   const [user] = useAuthState(auth)
